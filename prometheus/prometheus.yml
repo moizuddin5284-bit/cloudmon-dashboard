@@ -1,0 +1,27 @@
+global:
+  scrape_interval: 5s
+  evaluation_interval: 5s
+
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets: []
+
+scrape_configs:
+  # Flask application metrics (if prometheus_client is added)
+  - job_name: 'flask-app'
+    static_configs:
+      - targets: ['flask:5000']
+    metrics_path: '/metrics'
+    scrape_timeout: 4s
+
+  # Node Exporter — host system metrics
+  - job_name: 'node-exporter'
+    static_configs:
+      - targets: ['node-exporter:9100']
+    scrape_timeout: 4s
+
+  # Prometheus self-monitoring
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']

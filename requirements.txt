@@ -1,0 +1,7 @@
+Flask==3.0.3
+Flask-Login==0.6.3
+Werkzeug==3.0.3
+psutil==5.9.8
+APScheduler==3.10.4
+prometheus-client
+gunicorn==23.0.0
