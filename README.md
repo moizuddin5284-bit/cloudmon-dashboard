@@ -1,87 +1,201 @@
-<<<<<<< HEAD
-# Smart Cloud Monitoring Dashboard
+# ☁️ Smart Cloud Monitoring Dashboard
 
-A modern, cloud-focused resource monitoring application designed to track server performance metrics (CPU, Memory, Disk, and Network IO) in real-time, generate alerts on resource thresholds, and compile executive reports with PDF export.
+A modern cloud-focused resource monitoring application designed to track server performance metrics (CPU, Memory, Disk, and Network I/O) in real time, generate alerts based on configurable thresholds, and provide executive reports with PDF export capabilities.
 
-## 🚀 How to Run the Application (Without Docker)
+## Features
 
-Follow these step-by-step instructions to set up and run both the Flask backend and the React frontend locally on your Windows system.
-
-### Prerequisites
-Make sure you have the following installed:
-1. **Python 3.9+**
-2. **Node.js 18+** (with npm)
-
----
-
-### Step 1: Set up the Python Backend
-1. Open a terminal (PowerShell or Command Prompt) at the project root directory (`SmartCloudMonitoringDashboard`).
-2. Activate the virtual environment:
-   ```powershell
-   .venv\Scripts\activate
-   ```
-3. Install the required Python packages:
-   ```powershell
-   pip install -r requirements.txt
-   ```
+* Real-Time CPU, Memory, Disk, and Network Monitoring
+* Live Dashboard Updates using Server-Sent Events (SSE)
+* Configurable Alert Rules
+* Alert History & Notifications
+* Historical Analytics
+* Executive Reports
+* PDF Report Export
+* Dockerized Deployment
+* Prometheus Integration
+* Grafana Dashboards
+* Node Exporter Monitoring
 
 ---
 
-### Step 2: Build the Frontend Assets
-To allow the Flask server to serve the React Single Page Application (SPA), you must compile the frontend assets:
-1. Navigate to the `frontend` folder:
-   ```powershell
-   cd frontend
-   ```
-2. Install the React packages:
-   ```powershell
-   npm install
-   ```
-3. Build the static production bundle:
-   ```powershell
-   npm run build
-   ```
-   *Note: This generates compiled React assets directly inside the Flask static folder (`../static/react-dist`).*
+## Technology Stack
+
+### Backend
+
+* Flask
+* Flask-Login
+* APScheduler
+* SQLite
+* psutil
+
+### Frontend
+
+* React
+* Vite
+* Recharts
+* Lucide React
+
+### Monitoring & DevOps
+
+* Docker
+* Docker Compose
+* Prometheus
+* Grafana
+* Node Exporter
 
 ---
 
-### Step 3: Run the Application
-1. Return to the project root directory:
-   ```powershell
-   cd ..
-   ```
-2. Start the Flask server:
-   ```powershell
-   python app.py
-   ```
-3. The server will initialize the SQLite database (`database/monitor.db`) and start running on:
-   - **URL**: [http://localhost:5000](http://localhost:5000)
+# Running Without Docker
+
+## Prerequisites
+
+* Python 3.9+
+* Node.js 18+
+
+### 1. Activate Virtual Environment
+
+```powershell
+.venv\Scripts\activate
+```
+
+### 2. Install Python Dependencies
+
+```powershell
+pip install -r requirements.txt
+```
+
+### 3. Build Frontend
+
+```powershell
+cd frontend
+npm install
+npm run build
+```
+
+### 4. Run Application
+
+```powershell
+cd ..
+python app.py
+```
+
+Application URL:
+
+```text
+http://localhost:5000
+```
+
+### Default Credentials
+
+Username:
+
+```text
+admin
+```
+
+Password:
+
+```text
+admin123
+```
 
 ---
 
-### Step 4: Login and Credentials
-- **Username**: `admin`
-- **Password**: `admin123`
+# Running With Docker
+
+## Prerequisites
+
+* Docker Desktop
+* Docker Compose
+
+Verify installation:
+
+```bash
+docker --version
+docker compose version
+```
+
+### Build and Start Containers
+
+```bash
+docker compose up --build
+```
+
+or
+
+```bash
+docker-compose up --build
+```
+
+### Run in Detached Mode
+
+```bash
+docker compose up -d
+```
+
+### Stop Containers
+
+```bash
+docker compose down
+```
 
 ---
 
-## 📈 Key Features & Functional Verification
+## Service URLs
 
-### 1. Real-Time Resource Monitoring
-Once logged in, you will see real-time charts updating every **5 seconds** via Server-Sent Events (SSE). The charts monitor:
-- **CPU Allocation (%)**
-- **Memory Allocation (%)**
-- **Disk Space Utilization (%)**
-- **Network Inbound & Outbound Speeds (MB/s)**
+| Service       | URL                   |
+| ------------- | --------------------- |
+| Dashboard     | http://localhost:5000 |
+| Prometheus    | http://localhost:9090 |
+| Grafana       | http://localhost:3000 |
+| Node Exporter | http://localhost:9100 |
 
-### 2. Alert Management
-Navigate to the **Alert Rules** page to configure thresholds for metrics. If a server metric crosses the threshold, a warning/critical entry is added to the log, and a real-time toaster notification will pop up.
+---
 
-### 3. PDF Report Generation
-Navigate to the **Executive Reports** tab:
-1. View hourly, daily, and weekly statistics summaries (Average, Max, Min).
-2. Click the **Download PDF Report** button to export a high-resolution, custom-styled PDF of the performance summary and alert logs.
-=======
-# cloudmon-dashboard
-Real-time cloud resource monitoring dashboard built with Flask, React, Docker, Prometheus, Grafana, and Node Exporter.
->>>>>>> bcab90206fd10ec4b4415306e253c464dbc50db6
+## Dashboard Features
+
+### Real-Time Monitoring
+
+* CPU Usage
+* Memory Usage
+* Disk Utilization
+* Network Inbound/Outbound Traffic
+
+Updates occur every 5 seconds using SSE.
+
+### Alert Management
+
+Configure warning and critical thresholds for monitored resources. Triggered alerts are stored and displayed in real time.
+
+### Historical Analytics
+
+Analyze system performance over selectable time ranges with summary statistics.
+
+### Executive Reports
+
+Generate performance reports and export them as PDF documents.
+
+---
+
+## Project Structure
+
+```text
+SmartCloudMonitoringDashboard/
+│
+├── frontend/
+├── database/
+├── prometheus/
+├── grafana/
+├── static/
+├── Dockerfile
+├── docker-compose.yml
+├── requirements.txt
+├── app.py
+└── README.md
+```
+
+---
+
+## License
+
+MIT License
